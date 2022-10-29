@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block page_content %}
+
+<h1>Timetable</h1>
+
+<div class="row">
+
+{% for timetable_date in timetable_dates %}
+
+    <div class="col-md-4">
+
+        <div class="card mb-2">
+
+            <div class="card-body">
+
+                <h5 class="card-title">{{ timetable_date.date }}</h5>
+
+                <p class="card-text">{{ timetable_date.colour.colour }}</p>
+
+                <p class="card-text">{{ timetable_date.colour.crews_required }}</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
