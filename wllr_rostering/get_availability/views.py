@@ -5,6 +5,8 @@ from wllr_rostering.get_availability.models import TimetableDatesColours, Timeta
 
 
 def availability_by_date(availability_df):
+    if availability_df.empty:
+        availability_df = pd.DataFrame(columns=['name', 'grade', 'date'])
     driver_availability_by_date_df = availability_df[availability_df['grade']=='driver'] \
             .groupby('date') \
             .count() \
@@ -69,21 +71,23 @@ def availability_by_timetable(timetable_dates_colours_df, max_timetable_crew_req
     return all_availability_by_date
 
 
-def timetable_dates_colours(request):
+def get_timetable_data():
     timetable_dates_colours_df = pd.DataFrame(list(TimetableDatesColours.objects.all().values()))
     timetable_crew_reqs_df = pd.DataFrame(list(TimetableCrewRequirements.objects.all().values()))
     availability_df = pd.DataFrame(list(Availability.objects.all().values()))
-
-    if availability_df.empty:
-        availability_df = pd.DataFrame(columns=['name', 'grade', 'date'])
         
     max_timetable_crew_reqs_df = max_timetable_crew_reqs(timetable_crew_reqs_df)
     availability_by_date_df = availability_by_date(availability_df)
     availability_by_timetable_df = availability_by_timetable(
         timetable_dates_colours_df, max_timetable_crew_reqs_df, availability_by_date_df
     )
+    return availability_by_timetable_df.to_dict('index')
+
+
+def timetable_dates_colours(request):
+    availability_by_timetable = get_timetable_data()
 
     context = {
-        'timetable_dates': availability_by_timetable_df.to_dict('index')
+        'timetable_dates': availability_by_timetable
     }
     return render(request, 'timetable_dates.html', context)
