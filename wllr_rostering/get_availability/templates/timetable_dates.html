@@ -8,7 +8,7 @@
 
 <div class="row">
 
-{% for timetable_date in timetable_dates %}
+{% for _, timetable_date in timetable_dates.items %}
 
     <div class="col-md-4">
 
@@ -16,11 +16,23 @@
 
             <div class="card-body">
 
-                <h5 class="card-title">{{ timetable_date.date }}</h5>
+                <h5 class="card-title">Date: {{ timetable_date.date }}</h5>
 
-                <p class="card-text">{{ timetable_date.colour.colour }}</p>
+                <p class="card-text">Timetable: {{ timetable_date.timetable }}</p>
 
-                <p class="card-text">{{ timetable_date.colour.crews_required }}</p>
+                <p class="card-text">Turns to be rostered: {{ timetable_date.turns_to_be_covered }}</p>
+
+                <p class="card-text">Drivers available: {{ timetable_date.drivers_available }}</p>
+
+                <p class="card-text">Firemen available: {{ timetable_date.firemen_available }}</p>
+
+                <p class="card-text">Trainees available: {{ timetable_date.trainees_available }}</p>
+
+                <p class="card-text">Drivers required: {{ timetable_date.drivers_required }}</p>
+
+                <p class="card-text">Firemen required: {{ timetable_date.firemen_required }}</p>
+
+                <p class="card-text">Trainees required: {{ timetable_date.trainees_required }}</p>
 
             </div>
 

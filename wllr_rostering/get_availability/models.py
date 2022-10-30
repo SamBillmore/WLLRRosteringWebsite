@@ -21,14 +21,14 @@ class Availability(models.Model):
     """
     name = models.CharField(max_length=100)
     grade = models.CharField(max_length=25)
-    date = models.ForeignKey('TimetableDatesColours', on_delete=models.CASCADE)
+    date = models.DateField()
 
 
 class MasterRoster(models.Model):
     """ Master roster for output
     """
-    date = models.ForeignKey('TimetableDatesColours', on_delete=models.CASCADE)
-    timetable = models.ForeignKey('TimetableCrewRequirements', on_delete=models.CASCADE)
+    date = models.DateField()
+    timetable = models.CharField(max_length=25)
     turn = models.CharField(max_length=10)
     driver = models.CharField(max_length=100)
     fireman = models.CharField(max_length=100)
