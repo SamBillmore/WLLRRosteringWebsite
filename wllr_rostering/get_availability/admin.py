@@ -1,13 +1,14 @@
 from django.contrib import admin
+from import_export.admin import ImportExportModelAdmin
 from wllr_rostering.get_availability.models import TimetableCrewRequirements, TimetableDatesColours, Availability, MasterRoster
 
 
-class TimetableCrewRequirementsAdmin(admin.ModelAdmin):
-    pass
+class TimetableCrewRequirementsAdmin(ImportExportModelAdmin):
+    list_display = ['timetable','turn','points']
 
 
-class TimetableDatesColoursAdmin(admin.ModelAdmin):
-    pass
+class TimetableDatesColoursAdmin(ImportExportModelAdmin):
+    list_display = ['date', 'timetable']
 
 
 class AvailabilityAdmin(admin.ModelAdmin):
