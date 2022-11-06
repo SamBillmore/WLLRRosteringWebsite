@@ -2,7 +2,7 @@ from django.test import TestCase
 import datetime
 
 from wllr_rostering.get_availability.models import TimetableDatesColours, TimetableCrewRequirements, Availability
-from wllr_rostering.get_availability.views import get_timetable_data
+from wllr_rostering.get_availability.view_helpers import get_timetable_data
 
 
 class TimetableDatesColoursTestCase(TestCase):

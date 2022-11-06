@@ -18,5 +18,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('timetable/', include('wllr_rostering.get_availability.urls'))
+    path('availability/', include('wllr_rostering.get_availability.urls'))
 ]

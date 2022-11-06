@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+<h1>Availability</h1>
+<form method="post">
+Name: {{ form.name }}
+Grade: {{ form.grade }}
+{% for value, label, date in form.dates.field.choices %}
+    <div class="col-md-4">
+        <div class="card mb-2">
+            <div class="card-body">
+                <input type="checkbox" value="{{ date.date }}" name="dates">
+                    <span class="checkmark"></span>
+                        <a>{{ date.date }}</a>
+                            {% for _, availability in availability_by_timetable.items %}
+                                {% if availability.date == date.date %}
+                                    <p class="card-text">Timetable: {{ availability.timetable }}</p>
+                                    <p class="card-text">Turns to be rostered: {{ availability.turns_to_be_covered }}</p>
+                                    <p class="card-text">Drivers available: {{ availability.drivers_available }}</p>
+                                    <p class="card-text">Firemen available: {{ availability.firemen_available }}</p>
+                                    <p class="card-text">Trainees available: {{ availability.trainees_available }}</p>
+                                    <p class="card-text">Drivers required: {{ availability.drivers_required }}</p>
+                                    <p class="card-text">Firemen required: {{ availability.firemen_required }}</p>
+                                    <p class="card-text">Trainees required: {{ availability.trainees_required }}</p>
+                                {% endif %}
+                            {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% csrf_token %}
+    <button type="'submit">Submit</button>
+</form>
+{% endblock %}

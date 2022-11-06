@@ -1,7 +1,7 @@
 from django.urls import path
-from . import views
+from wllr_rostering.get_availability import views
 
 
 urlpatterns = [
-    path("", views.timetable_dates_colours, name='timetable')
+    path("", views.input_availability, name='availability'),
 ]
