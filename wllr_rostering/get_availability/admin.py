@@ -12,11 +12,11 @@ class TimetableDatesColoursAdmin(ImportExportModelAdmin):
 
 
 class AvailabilityAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name', 'grade', 'date']
 
 
 class MasterRosterAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['date', 'timetable', 'turn', 'driver', 'fireman', 'trainee']
 
 
 admin.site.register(TimetableCrewRequirements, TimetableCrewRequirementsAdmin)
