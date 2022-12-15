@@ -2,6 +2,7 @@ from django import forms
 from django.forms import models
 
 from wllr_rostering.get_availability.models import TimetableDatesColours, Availability
+from wllr_rostering.get_availability.grades_availabe import GRADE_OPTIONS
 
 
 class CustomModelChoiceIterator(models.ModelChoiceIterator):
@@ -33,7 +34,7 @@ class AvailabilityForm(forms.ModelForm):
         fields = '__all__'
 
     name = forms.CharField(max_length = 100)
-    grade = forms.CharField(max_length = 25)
+    grade = forms.CharField(label='grade', widget=forms.Select(choices=GRADE_OPTIONS))
     date = CustomModelChoiceField(
         widget = forms.CheckboxSelectMultiple,
         queryset = TimetableDatesColours.objects.all()
