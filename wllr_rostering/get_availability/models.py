@@ -1,4 +1,5 @@
 from django.db import models
+from django.core import validators
 
 
 class TimetableCrewRequirements(models.Model):
@@ -19,7 +20,7 @@ class TimetableDatesColours(models.Model):
 class Availability(models.Model):
     """ Availability by person
     """
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, validators=[validators.validate_unicode_slug])
     grade = models.CharField(max_length=25)
     date = models.DateField()
 

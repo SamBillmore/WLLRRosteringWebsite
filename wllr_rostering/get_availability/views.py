@@ -23,8 +23,13 @@ def input_availability(request):
                 'date': post['date'],
             }
             availability = Availability(**save_data)
-            availability.save()
-        return redirect("/")
+            try:
+                availability.full_clean()
+            except:
+                return redirect("/availability/name_error")
+            else:
+                availability.save()
+        return redirect("/availability/thank_you")
     else:
         form = AvailabilityForm()
 
@@ -36,3 +41,11 @@ def input_availability(request):
     }
 
     return render(request, 'input_availability.html', context)
+
+
+def name_error(req):
+    return render(req, 'name_error.html')
+
+
+def thank_you(req):
+    return render(req, 'thank_you.html')

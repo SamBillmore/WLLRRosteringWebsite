@@ -1,22 +1,30 @@
 import pandas as pd
 
 from wllr_rostering.get_availability.models import TimetableDatesColours, TimetableCrewRequirements, Availability
+from wllr_rostering.get_availability.grades_availabe import GRADE_OPTIONS
+
+
+def _check_grade_naming(grade_to_check, list_positions):
+    for position in list_positions:
+        if GRADE_OPTIONS[position][0] != grade_to_check:
+            raise ValueError('Code error: grade labels do not align')
+    return grade_to_check
 
 
 def availability_by_date(availability_df):
     if availability_df.empty:
         availability_df = pd.DataFrame(columns=['name', 'grade', 'date'])
-    driver_availability_by_date_df = availability_df[availability_df['grade']=='driver'] \
+    driver_availability_by_date_df = availability_df[availability_df['grade']==_check_grade_naming('driver', [0])] \
             .groupby('date') \
             .count() \
             .reset_index()[['date', 'grade']] \
             .rename(columns={'grade': 'drivers_available'})
-    fireman_availability_by_date_df = availability_df[availability_df['grade']=='fireman'] \
+    fireman_availability_by_date_df = availability_df[availability_df['grade']==_check_grade_naming('fireman', [1])] \
             .groupby('date') \
             .count() \
             .reset_index()[['date', 'grade']] \
             .rename(columns={'grade': 'firemen_available'})
-    trainee_availability_by_date_df = availability_df[availability_df['grade']=='trainee'] \
+    trainee_availability_by_date_df = availability_df[availability_df['grade']==_check_grade_naming('trainee', [2,3])] \
             .groupby('date') \
             .count() \
             .reset_index()[['date', 'grade']] \
