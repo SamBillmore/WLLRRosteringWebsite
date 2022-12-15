@@ -6,11 +6,11 @@
 <form method="post">
 Name: {{ form.name }}
 Grade: {{ form.grade }}
-{% for value, label, date in form.dates.field.choices %}
+{% for value, label, date in form.date.field.choices %}
     <div class="col-md-4">
         <div class="card mb-2">
             <div class="card-body">
-                <input type="checkbox" value="{{ date.date }}" name="dates">
+                <input type="checkbox" value={{ date.date | date:'Y-m-d' }} name="date">
                     <span class="checkmark"></span>
                         <a>{{ date.date }}</a>
                             {% for _, availability in availability_by_timetable.items %}

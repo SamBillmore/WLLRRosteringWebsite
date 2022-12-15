@@ -34,7 +34,7 @@ class AvailabilityForm(forms.ModelForm):
 
     name = forms.CharField(max_length = 100)
     grade = forms.CharField(max_length = 25)
-    dates = CustomModelChoiceField(
+    date = CustomModelChoiceField(
         widget = forms.CheckboxSelectMultiple,
         queryset = TimetableDatesColours.objects.all()
     )
