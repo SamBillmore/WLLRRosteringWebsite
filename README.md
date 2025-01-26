@@ -1,5 +1,7 @@
 # WLLR Rostering Website
-A django website for rostering at WLLR
+A django website for rostering at WLLR.
+
+Django tutorial: https://docs.djangoproject.com/en/5.1/intro/tutorial04/
 
 ## Run locally
 
