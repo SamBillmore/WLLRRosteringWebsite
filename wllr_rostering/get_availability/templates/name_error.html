@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% load static %}
-{% block page_content %}
-<h1>Input error</h1>
-<a>There was an error when enetering your name. Only Unicode letters, numbers, underscores or hyphens are permitted. Please click the link to try again.</a>
-<br>
-<a href="{% url 'availability' %}">Availability</a>
-
-{% endblock %}

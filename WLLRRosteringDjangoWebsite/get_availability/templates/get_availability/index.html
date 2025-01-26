@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>User availability</title>
+  </head>
+  <body>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Colour</th>
+            <th>Existing Volunteers</th>
+        </tr>
+        {% for day in timetable_summary %}
+        <tr>
+            <td>{{ day.timetable_date }}</td>
+            <td>{{ day.timetable_colour }}</td>
+            <td>{{ day.selected_count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+  </body>
+</html>
