@@ -1,10 +1,6 @@
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <title>User availability</title>
-  </head>
-  <body>
+{% extends "base.html" %}
+
+{% block content %}
     <table>
         <tr>
             <th>Date</th>
@@ -19,5 +15,4 @@
         </tr>
         {% endfor %}
     </table>
-  </body>
-</html>
+{% endblock %}
