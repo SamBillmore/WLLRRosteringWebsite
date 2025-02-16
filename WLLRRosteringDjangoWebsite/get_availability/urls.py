@@ -4,5 +4,5 @@ from . import views
 
 app_name = "get_availability"
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("", views.availability_view, name="availability_view"),
 ]
