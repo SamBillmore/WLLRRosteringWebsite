@@ -1,9 +1,11 @@
 from django.db.models import Count, Q
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from .models import Timetable
 
 
+@login_required
 def index(request):
     timetable_summary = Timetable.objects.annotate(
         selected_count=Count("useravailability",
