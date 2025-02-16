@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    {% load static %}
+
+    <title>WLLR Rostering</title>
+    <!-- <title>{% block title %}{% endblock %}</title>  -->
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}" >
+
+
+</head>
+
+<body>
+
+    <header>
+
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}! <a href="{% url 'logout' %}">Logout</a></p>
+        {% else %}
+            <p><a href="{% url 'login' %}">Login</a></p>
+        {% endif %}    
+
+    </header>
+
+
+
+    <main>
+
+        {% block content %}
+
+            <!-- This is where the main content of each page will be inserted -->
+
+        {% endblock %}
+
+    </main>
+
+
+
+    <footer>
+
+        <!-- Footer content -->
+
+    </footer>
+
+</body>
+
+</html>

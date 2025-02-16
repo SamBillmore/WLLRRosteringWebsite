@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "users.apps.UsersConfig",
     "get_availability.apps.GetAvailabilityConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -130,3 +131,10 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Custom User Model
+AUTH_USER_MODEL = 'users.CustomUser'  # 'users' is the app name
+
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/get_availability/"  # Redirect after successful login
+LOGOUT_REDIRECT_URL = "/"  # Redirect after logout

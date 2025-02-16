@@ -1,11 +1,7 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
-
-class User(models.Model):
-    name = models.CharField()
-
-    def __str__(self) -> str:
-        return self.name
+User = get_user_model()  # Get the custom user model dynamically
 
 
 class Timetable(models.Model):
