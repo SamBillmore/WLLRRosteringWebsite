@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>User availability</title>
+  </head>
+  {% load custom_filters %}
+  <body>
+    <h2>Set Your Availability</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Select Availability</th>
+                    <th>Volunteers Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for timetable in timetables %}
+                    <tr>
+                        <td>{{ timetable.timetable_date }}</td>
+                        <td>
+                            <input type="checkbox" name="availability" value="{{ timetable.id }}"
+                                {% if user_availability|get_item:timetable.id %} checked {% endif %}>
+                        </td>
+                        <td>{{ availability_dict|get_item:timetable.id }}</td>  <!-- Show total count -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    <button type="submit">Save Availability</button>
+  </form>
+
+  </body>
+</html>
